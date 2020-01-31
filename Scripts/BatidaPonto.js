@@ -1,11 +1,11 @@
 "use stricts";
 (function () {
     AdicionarEventos();
-    setInterval(AtualizaData, 1000);
 })();
 
 function AdicionarEventos() {
     CarregarDados(event);
+    setInterval(AtualizaData, 1000);
 };
 function AtualizaData() {
     document.getElementById('txtHoraAtual').value = new Date().toLocaleString();
@@ -17,13 +17,7 @@ function CarregarDados(event) {
         TerceiraMarcacao: "13:12:00",
         QuartaMarcacao: "17:30:00"
     }
-    var $divMarcacoesDiarias = document.getElementById('divMarcacoesDiarias');
-    var $txtPrimeiraMarcacao = document.getElementById('txtPrimeiraMarcacao');
-    var $txtSegundaMarcacao = document.getElementById('txtSegundaMarcacao');
-    var $txtTerceiraMarcacao = document.getElementById('txtTerceiraMarcacao');
-    var $txtQuartaMarcacao = document.getElementById('txtQuartaMarcacao');
-    debugger;
-    PreencheCamposElemento($divMarcacoesDiarias,dados);
+    PreencheCamposElemento(document.getElementById('divMarcacoesDiarias'), dados);
 }
 
 /**
@@ -37,8 +31,8 @@ function CarregarDados(event) {
 function PreencheCamposElemento(elementoHtml, objeto) {
     debugger;
     var campos = elementoHtml.getElementsByTagName('input');
-    for (var i = 0; i < campos.length; i++) {  
-        campos.value = objeto[elementoHtml[i].name] || '';
+    for (var i = 0; i < campos.length; i++) {
+        campos[i].value = objeto[campos[i].name] || '';
     }
     return elementoHtml;
 }
@@ -52,7 +46,7 @@ function PreencheCamposElemento(elementoHtml, objeto) {
  * @returns {Object}
  *  
  */
-function CapturaCamposFormulario(elementoHtml) {
+function CapturaCamposElemento(elementoHtml) {
     debugger;
     var objRetorno = {};
     for (var i = 0; i < elementoHtml.elements.length; i++) {
